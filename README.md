@@ -1,4 +1,4 @@
-# programmers_coffee
+![image](https://github.com/user-attachments/assets/4b47e28f-51da-434e-9838-4b5121c4043d)# programmers_coffee
 programmers side project
 프로그래머스 프로머스 1차 과제 클론(사이렌 오더)å
 
@@ -157,66 +157,81 @@ programmers side project
     
     - 회원가입
         
-        ![회원가입.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/4e8002c6-4a05-4cf5-a091-6a4d394b3af5/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85.png)
+        ![image](https://github.com/user-attachments/assets/6804adc9-ab7b-4a69-b149-2608f90315f8)
+
         
     - 비밀번호 리셋
         
-        ![비밀번호 리셋.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/2d0d94dc-a57a-45c2-8a18-0ca49c87924a/%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8_%EB%A6%AC%EC%85%8B.png)
+        ![image](https://github.com/user-attachments/assets/2e6869c9-95eb-44fa-ab90-446e47d67ded)
+
         
     - 계정 비활성화
         
-        ![계정 비활성화.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/764639b9-65dd-487c-ad60-741b4d6c17c1/%EA%B3%84%EC%A0%95_%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94.png)
+       ![image](https://github.com/user-attachments/assets/ae186aa9-d29d-44c6-81ac-c841a094e1f6)
+
         
     
     - 메뉴 조회
         
-        ![메뉴 조회.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/26eb2245-5c82-4dc6-9003-d67aacdc4a2c/83df5236-f0d2-4458-b67d-78de3322af96.png)
+       ![image](https://github.com/user-attachments/assets/826f9abc-b49d-4ecd-8a0b-19a21553fa08)
+
         
     - 장바구니 관리
         
-        ![장바구니.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/0e07ec96-ae4e-4f99-b7b9-c11821fe2ff3/de7827d7-ef3b-46fd-b4d5-f1c1ecab2b15.png)
+      ![image](https://github.com/user-attachments/assets/05018296-22bc-416d-ac28-315d9bf50bd3)
+
         
     - 주문 및 결제
         
-        ![주문 및 결제 (1).png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/bc0d5eb4-d63f-4f7c-99b0-f13c78ffcbba/%EC%A3%BC%EB%AC%B8_%EB%B0%8F_%EA%B2%B0%EC%A0%9C_(1).png)
+        ![image](https://github.com/user-attachments/assets/c750f79d-3652-4fc7-b863-9dac972e5b28)
+
         
     - 옵션 추가 및 수정 (관리자)
         
-        ![관리자 옵션 추가 및 수정.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/9b2dd0f2-2812-48bb-8fd1-d8420b39f327/81ac47fa-5785-4b81-bab3-40b63d5ff7cc.png)
+       ![image](https://github.com/user-attachments/assets/a650158d-940b-4593-841c-d8b11db8ef42)
+
         
     - 쿠폰 발행(관리자)
         
-        ![쿠폰 발행.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/380b25ae-4a1a-4996-a34a-a211ffa4b7a4/48770108-f6c2-441b-872e-37ae21e404c4.png)
+       ![image](https://github.com/user-attachments/assets/e73bf46c-27db-479b-a296-a8422036b803)
+
         
     
     - 로그인/로그아웃
         
-        ![로그인_로그아웃.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/9450088c-c637-433e-957c-1b78bd627eb0/%EB%A1%9C%EA%B7%B8%EC%9D%B8_%EB%A1%9C%EA%B7%B8%EC%95%84%EC%9B%83.png)
+       ![image](https://github.com/user-attachments/assets/211771b8-848a-418c-b4d8-c8af39838c67)
+
         
     - 회원 탈퇴
-        
-        ![회원탈퇴.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/2dfee99a-7489-42a0-a69c-9492f16a59ce/%ED%9A%8C%EC%9B%90%ED%83%88%ED%87%B4.png)
+      
+        ![image](https://github.com/user-attachments/assets/fc971674-d36c-41a0-9cc9-d33ea6686fab)
+
         
     - 회원정보 조회/수정
         
-        ![회원정보 조회_수정.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/d284545b-6ccf-426b-8553-d59d7c90fb08/%ED%9A%8C%EC%9B%90%EC%A0%95%EB%B3%B4_%EC%A1%B0%ED%9A%8C_%EC%88%98%EC%A0%95.png)
+        ![image](https://github.com/user-attachments/assets/1184fa37-b3cc-44ef-841d-2e8db2fe1d33)
+
         
     
     - 커스텀 옵션 선택
         
-        ![옵션 선택.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/91016372-0b59-4b60-9f90-e44f92726200/79eb49a7-1b6e-45c9-83c0-eaef5eb908d2.png)
+        ![image](https://github.com/user-attachments/assets/7c49372b-b239-4895-b95f-2b22c79f2ffc)
+
         
     - 재주문 요청
         
-        ![빠른 재주문.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/ebd63c10-1f79-4c7b-aec9-01779fa6b59b/357a0d09-90d1-4e92-80f2-02b91e294407.png)
+        ![image](https://github.com/user-attachments/assets/00bf1c82-8b99-40ab-8e15-aa3bbd40be08)
+
         
     - 메뉴 추가 및 수정 (관리자)
         
-        ![관리자 메뉴 추가 및 수정.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/5f1e18ea-8e8e-4a23-97ae-e5432f5de67e/aeba6a4e-d849-4214-b71a-e9aebf61c944.png)
+        ![image](https://github.com/user-attachments/assets/4faa7ac6-361c-4321-acc0-cb38ab79b90c)
+
         
     - 주문 모니터링 (관리자)
         
-        ![주문 처리.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/89fde35f-d786-48b7-a620-56fc17eb00d5/3cb28fa1-1650-4c7a-b126-958c2412b94d/0ae2bb23-1076-4b45-bd40-08aa8911eebc.png)
+       ![image](https://github.com/user-attachments/assets/cbfd0bb4-ce00-463e-9edb-3fb5d0e4a27b)
+
         
     
 
