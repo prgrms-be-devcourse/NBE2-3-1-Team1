@@ -1,6 +1,5 @@
-![image](https://github.com/user-attachments/assets/4b47e28f-51da-434e-9838-4b5121c4043d)# programmers_coffee
-programmers side project
-프로그래머스 프로머스 1차 과제 클론(사이렌 오더)å
+# programmers_coffee
+프로그래머스 프로머스 1차 과제 클론(사이렌 오더)
 
 ---
 
