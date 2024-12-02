@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.example.demo.dto.request.CategoryRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -22,12 +23,12 @@ public class Category{
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<Item> items = new ArrayList<>();
-
     @Builder
     public Category(String name) {
         this.name = name;
     }
 
+    public static Category toCategory(CategoryRequest.Create dto) {
+        return Category.builder().name(dto.name()).build();
+    }
 }
