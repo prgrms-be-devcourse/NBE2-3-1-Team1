@@ -30,10 +30,6 @@ public class Order extends BaseTime{
     @Column(nullable = false)
     private String zipCode;
 
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderItem> orderItems = new ArrayList<>();
-
     /* 주문 발송일*/
     private LocalDateTime deliveryDate;
 
