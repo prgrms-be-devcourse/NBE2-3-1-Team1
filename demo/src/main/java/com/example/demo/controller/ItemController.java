@@ -8,9 +8,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/items")
@@ -27,4 +28,42 @@ public class ItemController {
         return ResponseEntity.ok().body(
                 ItemResponse.Create.from(itemService.createItem(dto, categoryService.getCategoryById(dto.categoryId()))));
     }
+
+    @Operation(summary = "상품 개별 조회 API")
+    @GetMapping("/{itemId}")
+    public ResponseEntity<ItemResponse.Create> getItemById(@PathVariable(name="itemId") Long itemId) {
+        return ResponseEntity.ok().body(
+                ItemResponse.Create.from(itemService.getItemById(itemId))
+        );
+    }
+
+    /* TODO Pageable  */
+    @Operation(summary = "전체 상품 조회")
+    @GetMapping
+    public ResponseEntity<List<ItemResponse.Create>> getAllItems() {
+        return ResponseEntity.ok().body(
+                itemService.getAllItems().stream()
+                        .map(ItemResponse.Create::from)
+                        .collect(Collectors.toList())
+        );
+    }
+
+    @Operation(summary="상품 수정 API")
+    @PutMapping("/{itemId}")
+    public ResponseEntity<ItemResponse.Create> updateItem(@PathVariable("itemId") Long itemId, @RequestBody ItemRequest.Create dto) {
+        return ResponseEntity.ok().body(
+                ItemResponse.Create.from(
+                        itemService.updateItem(itemId, dto, categoryService.getCategoryById(dto.categoryId()))
+                )
+        );
+    }
+
+    @Operation(summary = "상품 삭제 API")
+    @DeleteMapping("/{itemId}")
+    public ResponseEntity<Void> deleteItem(@PathVariable("itemId") Long itemId) {
+        itemService.deleteItem(itemId);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }
