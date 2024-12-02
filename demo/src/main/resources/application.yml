@@ -10,3 +10,5 @@ spring:
 
 springdoc:
   use-fqn: true
+  swagger-ui:
+    path: /swagger
