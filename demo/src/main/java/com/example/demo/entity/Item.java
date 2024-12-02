@@ -42,4 +42,9 @@ public class Item{
                 .category(category)
                 .build();
     }
+    public void updateItem(String name, int price, Category category) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
 }

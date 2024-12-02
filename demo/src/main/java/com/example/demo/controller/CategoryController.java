@@ -26,4 +26,10 @@ public class CategoryController {
         return ResponseEntity.ok().body(
                 CategoryResponse.Create.from(categoryService.createCategory(dto)));
     }
+
+    // TODO 지영님 카테고리 수정 / {categoryId}
+
+
+    // TODO 지영님 카테고리 삭제 / {categoryId}
+
 }
