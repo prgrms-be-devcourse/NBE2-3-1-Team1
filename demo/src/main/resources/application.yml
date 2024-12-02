@@ -3,7 +3,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: "jdbc:mysql://localhost:3306/cgcoffee"
     username: "root"
-    password: ""
+    password: "0420"
   jpa:
     hibernate:
       ddl-auto: create
+
+springdoc:
+  use-fqn: true

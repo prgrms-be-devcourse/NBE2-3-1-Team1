@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.example.demo.dto.request.ItemRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -23,7 +24,7 @@ public class Item{
     @Column(nullable = false)
     private int price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -32,5 +33,13 @@ public class Item{
         this.name = name;
         this.price = price;
         this.category = category;
+    }
+
+    public static Item toItem(ItemRequest.Create dto, Category category) {
+        return Item.builder()
+                .name(dto.name())
+                .price(dto.price())
+                .category(category)
+                .build();
     }
 }

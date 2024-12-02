@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 
+import com.example.demo.dto.request.OrderItemRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -37,6 +38,19 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
+    public static OrderItem toOrderItem(Item item) {
+        return OrderItem.builder()
+                .item(item)
+                .quantity(1)
+                .build();
+    }
 
+    public void createOrder(Order order) {
+        this.order = order;
+    }
+
+    public void addQuantity() {
+        this.quantity++;
+    }
 
 }
