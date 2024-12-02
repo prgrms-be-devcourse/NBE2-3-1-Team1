@@ -11,7 +11,8 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Category {
+@Table(name = "categories")
+public class Category{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

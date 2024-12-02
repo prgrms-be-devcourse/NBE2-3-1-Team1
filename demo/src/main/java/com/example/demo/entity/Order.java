@@ -13,7 +13,8 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Order {
+@Table(name = "orders")
+public class Order extends BaseTime{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +34,6 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    /* 주문 생성일 */
-    private LocalDateTime createdAt;
     /* 주문 발송일*/
     private LocalDateTime deliveryDate;
 
@@ -47,7 +46,6 @@ public class Order {
         this.email = email;
         this.address = address;
         this.zipCode = zipCode;
-        this.createdAt = LocalDateTime.now(); /* 주문 생성과 동시에 날짜 생성*/
     }
 
 }

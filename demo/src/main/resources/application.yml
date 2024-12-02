@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: "jdbc:mysql://localhost:3306/cgcoffee?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"
-    username: ""
-    password: ""
+    url: "jdbc:mysql://localhost:3306/cgcoffee"
+    username: "root"
+    password: "0420"
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create

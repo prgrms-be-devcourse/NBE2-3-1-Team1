@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "order_items")
 public class OrderItem {
 
     @Id
@@ -24,7 +25,7 @@ public class OrderItem {
 
     /* 하나의 아이템은 여러 주문아이템에 포함될 수 있다.*/
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
+    @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
     @Column(nullable = false)
