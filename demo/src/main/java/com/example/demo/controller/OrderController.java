@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.dto.request.OrderRequest;
 import com.example.demo.dto.response.OrderResponse;
 import com.example.demo.entity.Order;
-import com.example.demo.entity.OrderItem;
 import com.example.demo.service.OrderItemService;
 import com.example.demo.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

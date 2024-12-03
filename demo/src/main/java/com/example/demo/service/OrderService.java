@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.dto.request.OrderRequest;
 import com.example.demo.entity.Order;
-import com.example.demo.entity.OrderItem;
 import com.example.demo.entity.OrderStatus;
 import com.example.demo.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,9 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @Service

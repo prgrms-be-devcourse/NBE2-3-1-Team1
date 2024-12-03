@@ -5,7 +5,6 @@ import com.example.demo.entity.Item;
 import com.example.demo.entity.Order;
 import com.example.demo.entity.OrderItem;
 import com.example.demo.repository.OrderItemRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,7 +71,7 @@ public class OrderItemService {
     }
 
     @Transactional(readOnly = true)
-    public void checkIfOrderItemsExist(){
+    public void checkIfOrderItemsExist() {
         if (orderItemRepository.findAllByOrderIsNull().isEmpty()) {
             throw new IllegalStateException("장바구니가 존재하지 않습니다.");
         }
