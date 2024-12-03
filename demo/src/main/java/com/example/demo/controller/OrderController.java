@@ -29,12 +29,12 @@ public class OrderController {
     @Operation(summary = "주문 생성 API")
     @PostMapping
     public ResponseEntity<OrderResponse.Create> createOrder(@RequestBody OrderRequest.Create dto) {
+        orderItemService.checkIfOrderItemsExist();
         Order order = orderService.createOrder(dto);
-        List<OrderItem> resultOrderItems =
-                orderItemService.updateOrderItemsByOrder(orderItemService.getAllByOrder(order), orderItemService.getAllByOrderIsNull(), order);
 
         return ResponseEntity.ok().body(
-                OrderResponse.Create.from(order, resultOrderItems)
+                OrderResponse.Create.from(order,
+                        orderItemService.updateOrderItemsByOrder(orderItemService.getAllByOrder(order), orderItemService.getAllByOrderIsNull(), order))
         );
     }
 

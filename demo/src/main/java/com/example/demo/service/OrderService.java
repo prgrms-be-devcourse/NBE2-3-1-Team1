@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dto.request.OrderRequest;
 import com.example.demo.entity.Order;
+import com.example.demo.entity.OrderItem;
 import com.example.demo.entity.OrderStatus;
 import com.example.demo.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -19,6 +24,7 @@ public class OrderService {
 
     @Transactional
     public Order createOrder(OrderRequest.Create dto) {
+
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime deliveryDate;
 
@@ -31,12 +37,11 @@ public class OrderService {
         Order order = getOrderByDeliveryDateAndEmail(deliveryDate, dto.email());
 
         if (order == null) {
-            return orderRepository.save(Order.toOrder(dto, now.getHour() > 14 ? OrderStatus.PREPARING : OrderStatus.DELIVERING, deliveryDate));
+            return orderRepository.save(Order.toOrder(dto, now.toLocalTime().isAfter(LocalTime.of(14, 0)) ? OrderStatus.PREPARING : OrderStatus.DELIVERING, deliveryDate));
         }
 
         return order;
     }
-
 
 
     @Transactional(readOnly = true)

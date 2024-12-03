@@ -35,6 +35,7 @@ public class OrderItemService {
 
     @Transactional
     public List<OrderItem> updateOrderItemsByOrder(List<OrderItem> orderItemsByOrder, List<OrderItem> orderItemsByOrderIsNull, Order order) {
+
         Map<Long, OrderItem> mergedOrderItems = new HashMap<>();
 
         for (OrderItem orderItem : orderItemsByOrder) {
@@ -62,13 +63,19 @@ public class OrderItemService {
 
     @Transactional(readOnly = true)
     public List<OrderItem> getAllByOrderIsNull() {
-        return orderItemRepository.findAllByOrderIsNull()
-                .orElseThrow(() -> new EntityNotFoundException("장바구니가 존재하지 않습니다."));
+        return orderItemRepository.findAllByOrderIsNull();
     }
 
     @Transactional(readOnly = true)
     public List<OrderItem> getAllByOrder(Order order) {
         return orderItemRepository.findByOrder(order);
+    }
+
+    @Transactional(readOnly = true)
+    public void checkIfOrderItemsExist(){
+        if (orderItemRepository.findAllByOrderIsNull().isEmpty()) {
+            throw new IllegalStateException("장바구니가 존재하지 않습니다.");
+        }
     }
 
     @Transactional
