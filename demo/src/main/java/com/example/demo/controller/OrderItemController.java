@@ -9,9 +9,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,8 +24,16 @@ public class OrderItemController {
 
     @PostMapping
     @Operation(summary = "장바구니 추가 API")
-    public ResponseEntity<OrderItemResponse.Create> createOrderItem(OrderItemRequest.Create dto) {
+    public ResponseEntity<OrderItemResponse.Create> createOrderItem(@RequestBody OrderItemRequest.Create dto) {
         return ResponseEntity.ok().body(
                 OrderItemResponse.Create.from(orderItemService.createOrderItem(dto, itemService.getItemById(dto.itemId()))));
+    }
+
+    @GetMapping
+    @Operation(summary = "장바구니 전체 조회 API")
+    public ResponseEntity<OrderItemResponse.ReadAll> getAllOrderItems() {
+        return ResponseEntity.ok().body(
+                OrderItemResponse.ReadAll.from(orderItemService.getAllByOrderIsNull())
+        );
     }
 }
