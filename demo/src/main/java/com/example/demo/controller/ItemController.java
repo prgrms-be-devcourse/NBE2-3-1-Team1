@@ -9,7 +9,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +23,7 @@ public class ItemController {
 
     @Operation(summary = "상품 추가 API")
     @PostMapping
-    public ResponseEntity<ItemResponse.Create> createItem(ItemRequest.Create dto) {
+    public ResponseEntity<ItemResponse.Create> createItem(@RequestBody ItemRequest.Create dto) {
         return ResponseEntity.ok().body(
                 ItemResponse.Create.from(itemService.createItem(dto, categoryService.getCategoryById(dto.categoryId()))));
     }
@@ -37,7 +36,6 @@ public class ItemController {
         );
     }
 
-    /* TODO Pageable  */
     @Operation(summary = "전체 상품 조회")
     @GetMapping
     public ResponseEntity<List<ItemResponse.Create>> getAllItems() {
@@ -64,6 +62,5 @@ public class ItemController {
         itemService.deleteItem(itemId);
         return ResponseEntity.noContent().build();
     }
-
 
 }
