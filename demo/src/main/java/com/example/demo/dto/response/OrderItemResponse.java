@@ -1,7 +1,5 @@
 package com.example.demo.dto.response;
 
-import com.example.demo.entity.Item;
-import com.example.demo.entity.Order;
 import com.example.demo.entity.OrderItem;
 
 import java.util.List;
@@ -24,7 +22,7 @@ public record OrderItemResponse() {
             int price
     ) {
         public static OrderItemResponse.Read from(OrderItem orderItem) {
-            return new OrderItemResponse.Read(orderItem.getItem().getId(), orderItem.getQuantity(), orderItem.getItem().getPrice()*orderItem.getQuantity());
+            return new OrderItemResponse.Read(orderItem.getItem().getId(), orderItem.getQuantity(), orderItem.getItem().getPrice() * orderItem.getQuantity());
         }
     }
 
