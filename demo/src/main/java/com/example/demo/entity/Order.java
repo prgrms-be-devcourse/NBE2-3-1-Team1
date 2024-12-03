@@ -8,8 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -34,6 +32,8 @@ public class Order extends BaseTime{
     /* 주문 발송일*/
     private LocalDateTime deliveryDate;
 
+    private Integer totalPrice;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OrderStatus status;
@@ -55,6 +55,10 @@ public class Order extends BaseTime{
                 .status(status)
                 .deliveryDate(deliveryDate)
                 .build();
+    }
+
+    public void updateTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
 }

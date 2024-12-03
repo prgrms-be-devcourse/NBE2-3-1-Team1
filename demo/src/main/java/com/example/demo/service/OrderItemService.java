@@ -59,6 +59,7 @@ public class OrderItemService {
         return orderItemsByOrder;
     }
 
+
     @Transactional(readOnly = true)
     public List<OrderItem> getAllByOrderIsNull() {
         return orderItemRepository.findAllByOrderIsNull();
@@ -66,7 +67,7 @@ public class OrderItemService {
 
     @Transactional(readOnly = true)
     public List<OrderItem> getAllByOrder(Order order) {
-        return orderItemRepository.findByOrder(order);
+        return orderItemRepository.findAllByOrder(order);
     }
 
     @Transactional(readOnly = true)

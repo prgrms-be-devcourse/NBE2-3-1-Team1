@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dto.request.OrderRequest;
 import com.example.demo.entity.Order;
+import com.example.demo.entity.OrderItem;
 import com.example.demo.entity.OrderStatus;
 import com.example.demo.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -39,10 +41,20 @@ public class OrderService {
         return order;
     }
 
+    @Transactional
+    public void updateTotalPrice(Order order, List<OrderItem> mergedOrderItems) {
+        int totalPrice = mergedOrderItems.stream()
+                .mapToInt(orderItem -> orderItem.getQuantity() * orderItem.getItem().getPrice())
+                .sum();
+        order.updateTotalPrice(totalPrice);
+    }
+
 
     @Transactional(readOnly = true)
     public Order getOrderByDeliveryDateAndEmail(LocalDateTime deliveryDate, String email) {
         return orderRepository.findByDeliveryDateAndEmail(deliveryDate, email);
     }
+
+
 }
 
