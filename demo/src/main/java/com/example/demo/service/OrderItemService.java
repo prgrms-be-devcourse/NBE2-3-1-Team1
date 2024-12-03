@@ -20,7 +20,7 @@ public class OrderItemService {
     private final OrderItemRepository orderItemRepository;
 
     @Transactional
-    public OrderItem createOrderItem(OrderItemRequest.Create dto, Item item) {
+    public OrderItem createOrderItem(Item item) {
         OrderItem orderItem = orderItemRepository.findByItemAndOrderIsNull(item);
 
         if (orderItem == null) {

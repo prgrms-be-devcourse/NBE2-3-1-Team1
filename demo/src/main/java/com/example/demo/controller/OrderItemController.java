@@ -26,7 +26,7 @@ public class OrderItemController {
     @Operation(summary = "장바구니 추가 API")
     public ResponseEntity<OrderItemResponse.Create> createOrderItem(@RequestBody OrderItemRequest.Create dto) {
         return ResponseEntity.ok().body(
-                OrderItemResponse.Create.from(orderItemService.createOrderItem(dto, itemService.getItemById(dto.itemId()))));
+                OrderItemResponse.Create.from(orderItemService.createOrderItem(itemService.getItemById(dto.itemId()))));
     }
 
     @GetMapping
