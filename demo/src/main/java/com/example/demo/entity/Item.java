@@ -28,11 +28,27 @@ public class Item{
     @JoinColumn(name = "category_id")
     private Category category;
 
+    /* 재고 관련 */
+    private int stockQuantity;
+
+    public void addStcok(int quantity) {
+        this.stockQuantity += quantity;
+    }
+
+    public void removeStock(int quantity) {
+        this.stockQuantity = this.stockQuantity - quantity;
+        if (this.stockQuantity < 0) {
+            throw new IllegalStateException("재고 부족");
+        }
+
+    }
+
     @Builder
-    public Item(String name, int price, Category category) {
+    public Item(String name, int price, Category category, int stockQuantity) {
         this.name = name;
         this.price = price;
         this.category = category;
+        this.stockQuantity = stockQuantity;
     }
 
     public static Item toItem(ItemRequest.Create dto, Category category) {
@@ -40,11 +56,13 @@ public class Item{
                 .name(dto.name())
                 .price(dto.price())
                 .category(category)
+                .stockQuantity(dto.stockQuantity())
                 .build();
     }
-    public void updateItem(String name, int price, Category category) {
+    public void updateItem(String name, int price, Category category, int stockQuantity) {
         this.name = name;
         this.price = price;
         this.category = category;
+        this.stockQuantity = stockQuantity;
     }
 }

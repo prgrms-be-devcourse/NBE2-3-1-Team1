@@ -42,15 +42,28 @@ public class ItemService {
             throw new IllegalArgumentException("이미 존재하는 상품입니다.");
         }
         Item item = getItemById(itemId);
-        item.updateItem(dto.name(),dto.price(),category);
+        item.updateItem(dto.name(),dto.price(),category,dto.stockQuantity());
         return item;
 
     }
 
     @Transactional
     public void deleteItem(Long itemId) {
-        log.info("삭제 itemId = {}", itemId);
         itemRepository.deleteById(itemId);
+    }
+
+    @Transactional
+    public Item addStock(Long ItemId, int quantity) {
+        Item item = getItemById(ItemId);
+        item.addStcok(quantity);
+        return item;
+    }
+
+    @Transactional
+    public Item removeStock(Long ItemId,int quantity) {
+        Item item = getItemById(ItemId);
+        item.removeStock(quantity);
+        return item;
     }
 
 }
