@@ -7,5 +7,5 @@ import java.time.LocalDateTime;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    Order findByDeliveryDate(LocalDateTime deliveryDate);
+    Order findByDeliveryDateAndEmail(LocalDateTime deliveryDate, String email);
 }

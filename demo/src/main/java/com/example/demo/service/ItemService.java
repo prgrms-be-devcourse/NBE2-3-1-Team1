@@ -44,6 +44,7 @@ public class ItemService {
         Item item = getItemById(itemId);
         item.updateItem(dto.name(),dto.price(),category);
         return item;
+
     }
 
     @Transactional
