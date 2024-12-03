@@ -8,10 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,9 +25,18 @@ public class CategoryController {
                 CategoryResponse.Create.from(categoryService.createCategory(dto)));
     }
 
-    // TODO 지영님 카테고리 수정 / {categoryId}
+    @Operation(summary = "카테고리 수정 API")
+    @PutMapping("/{categoryId}")
+    public ResponseEntity<CategoryResponse.Create> updateCategory(@PathVariable("categoryId") Long categoryId, @RequestBody CategoryRequest.Create dto) {
+        return ResponseEntity.ok().body(
+                CategoryResponse.Create.from(categoryService.updateCategory(categoryId, dto))
+        );
+    }
 
-
-    // TODO 지영님 카테고리 삭제 / {categoryId}
-
+    @Operation(summary = "카테고리 삭제 API")
+    @DeleteMapping("/{categoryId}")
+    public ResponseEntity<CategoryResponse.Create> deleteCategory(@PathVariable("categoryId") Long categoryId) {
+        categoryService.deleteCategory(categoryId);
+        return ResponseEntity.noContent().build();
+    }
 }

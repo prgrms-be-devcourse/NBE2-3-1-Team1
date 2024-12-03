@@ -31,4 +31,9 @@ public class Category{
     public static Category toCategory(CategoryRequest.Create dto) {
         return Category.builder().name(dto.name()).build();
     }
+
+
+    public void updateCategory(String name) {
+        this.name = name;
+    }
 }
