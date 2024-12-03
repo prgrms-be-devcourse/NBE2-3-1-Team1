@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -22,6 +21,9 @@ public class ItemService {
 
     @Transactional
     public Item createItem(ItemRequest.Create dto, Category category) {
+        if (itemRepository.existsByNameAndCategory(dto.name(), category)) {
+            throw new IllegalArgumentException("이미 존재하는 상품입니다.");
+        }
         return itemRepository.save(Item.toItem(dto, category));
     }
 
@@ -30,23 +32,20 @@ public class ItemService {
                 .orElseThrow(() -> new EntityNotFoundException("상품을 찾을 수 없습니다."));
     }
 
-    /* TODO 카테고리별, 전체 아이템 별 */
     public List<Item> getAllItems() {
         return itemRepository.findAll();
     }
 
-    /* TODO 상품 수정 */
     @Transactional
     public Item updateItem(Long itemId, ItemRequest.Create dto, Category category) {
-        log.info("수정 categoryId = {},dto.name ={}", category.getId(), dto.name());
+        if (itemRepository.existsByNameAndCategoryAndIdNot(dto.name(), category, itemId)) {
+            throw new IllegalArgumentException("이미 존재하는 상품입니다.");
+        }
         Item item = getItemById(itemId);
-        log.info("수정 categoryId = {},dto.name ={}", item.getCategory(), item.getId());
         item.updateItem(dto.name(),dto.price(),category);
-        log.info("수정 categoryId = {},dto.name ={}", item.getCategory(), item.getId());
-        return itemRepository.save(item);
+        return item;
     }
 
-    /* TODO 상품 삭제 */
     @Transactional
     public void deleteItem(Long itemId) {
         log.info("삭제 itemId = {}", itemId);
