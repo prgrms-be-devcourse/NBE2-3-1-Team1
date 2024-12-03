@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,7 @@ public class CategoryController {
 
     @Operation(summary = "카테고리 추가 API")
     @PostMapping()
-    public ResponseEntity<CategoryResponse.Create> createCategory(CategoryRequest.Create dto) {
+    public ResponseEntity<CategoryResponse.Create> createCategory(@RequestBody CategoryRequest.Create dto) {
         return ResponseEntity.ok().body(
                 CategoryResponse.Create.from(categoryService.createCategory(dto)));
     }
