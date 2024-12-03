@@ -32,5 +32,4 @@ public class CategoryController {
 
 
     // TODO 지영님 카테고리 삭제 / {categoryId}
-
 }
