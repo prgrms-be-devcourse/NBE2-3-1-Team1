@@ -41,7 +41,7 @@ public class ItemService {
         log.info("수정 categoryId = {},dto.name ={}", category.getId(), dto.name());
         Item item = getItemById(itemId);
         log.info("수정 categoryId = {},dto.name ={}", item.getCategory(), item.getId());
-        item.updateItem(dto.name(),dto.price(),category);
+        item.updateItem(dto.name(), dto.price(), category);
         log.info("수정 categoryId = {},dto.name ={}", item.getCategory(), item.getId());
         return itemRepository.save(item);
     }

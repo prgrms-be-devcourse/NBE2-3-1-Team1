@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @RequiredArgsConstructor
 @Service
@@ -19,6 +20,7 @@ public class OrderService {
 
     @Transactional
     public Order createOrder(OrderRequest.Create dto) {
+
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime deliveryDate;
 
@@ -31,12 +33,11 @@ public class OrderService {
         Order order = getOrderByDeliveryDateAndEmail(deliveryDate, dto.email());
 
         if (order == null) {
-            return orderRepository.save(Order.toOrder(dto, now.getHour() > 14 ? OrderStatus.PREPARING : OrderStatus.DELIVERING, deliveryDate));
+            return orderRepository.save(Order.toOrder(dto, now.toLocalTime().isAfter(LocalTime.of(14, 0)) ? OrderStatus.PREPARING : OrderStatus.DELIVERING, deliveryDate));
         }
 
         return order;
     }
-
 
 
     @Transactional(readOnly = true)
