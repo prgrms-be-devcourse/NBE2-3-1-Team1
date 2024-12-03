@@ -5,6 +5,7 @@ public record ItemRequest() {
     public record Create(
         String name,
         int price,
-        Long categoryId
+        Long categoryId,
+        int stockQuantity
     ) {}
 }

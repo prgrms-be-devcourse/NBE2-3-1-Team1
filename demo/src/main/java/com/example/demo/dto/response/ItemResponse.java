@@ -1,6 +1,5 @@
 package com.example.demo.dto.response;
 
-import com.example.demo.entity.Category;
 import com.example.demo.entity.Item;
 
 public record ItemResponse() {
@@ -10,10 +9,19 @@ public record ItemResponse() {
             String name,
             int price,
             Long categoryId,
-            String categoryName
+            String categoryName,
+            int stockQuantity
     ) {
         public static ItemResponse.Create from(Item item) {
-            return new ItemResponse.Create(item.getId(), item.getName(), item.getPrice(), item.getCategory().getId(), item.getCategory().getName());
+            return new ItemResponse.Create(
+                    item.getId(),
+                    item.getName(),
+                    item.getPrice(),
+                    item.getCategory().getId(),
+                    item.getCategory().getName(),
+                    item.getStockQuantity()
+            );
         }
+
     }
 }

@@ -30,7 +30,7 @@ public class ItemController {
 
     @Operation(summary = "상품 개별 조회 API")
     @GetMapping("/{itemId}")
-    public ResponseEntity<ItemResponse.Create> getItemById(@PathVariable(name="itemId") Long itemId) {
+    public ResponseEntity<ItemResponse.Create> getItemById(@PathVariable(name = "itemId") Long itemId) {
         return ResponseEntity.ok().body(
                 ItemResponse.Create.from(itemService.getItemById(itemId))
         );
@@ -46,7 +46,7 @@ public class ItemController {
         );
     }
 
-    @Operation(summary="상품 수정 API")
+    @Operation(summary = "상품 수정 API")
     @PutMapping("/{itemId}")
     public ResponseEntity<ItemResponse.Create> updateItem(@PathVariable("itemId") Long itemId, @RequestBody ItemRequest.Create dto) {
         return ResponseEntity.ok().body(
@@ -63,4 +63,21 @@ public class ItemController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "상품 재고 추가 API")
+    @PostMapping("/{itemId}/stock/add")
+    public ResponseEntity<ItemResponse.Create> addStock(@PathVariable("itemId") Long itemId,
+                                                        @RequestParam("quantity") int quantity) {
+        return ResponseEntity.ok()
+                .body(ItemResponse.Create.from(itemService.addStock(itemId, quantity)));
+    }
+
+    @Operation(summary = "상품 재고 감소 API")
+    @PostMapping("/{itemId}/stock/remove")
+    public ResponseEntity<ItemResponse.Create> removeStock(
+            @PathVariable("itemId") Long itemId,
+            @RequestParam("quantity") int quantity) {
+        return ResponseEntity.ok()
+                .body(ItemResponse.Create.from(itemService.removeStock(itemId, quantity)));
+    }
 }
+
