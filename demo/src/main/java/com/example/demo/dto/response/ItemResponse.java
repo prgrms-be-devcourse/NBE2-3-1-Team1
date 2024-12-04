@@ -10,7 +10,8 @@ public record ItemResponse() {
             int price,
             Long categoryId,
             String categoryName,
-            int stockQuantity
+            int stockQuantity,
+            String imageUrl
     ) {
         public static ItemResponse.Create from(Item item) {
             return new ItemResponse.Create(
@@ -19,9 +20,9 @@ public record ItemResponse() {
                     item.getPrice(),
                     item.getCategory().getId(),
                     item.getCategory().getName(),
-                    item.getStockQuantity()
+                    item.getStockQuantity(),
+                    item.getImageUrl()
             );
         }
-
     }
 }
