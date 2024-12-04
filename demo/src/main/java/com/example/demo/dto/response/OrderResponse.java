@@ -15,13 +15,15 @@ public record OrderResponse() {
             String address,
             String zipCode,
             List<OrderItemResponse.Create> orderItems,
+            Integer totalPrice,
             OrderStatus status,
             LocalDateTime deliveryDate
     ) {
         public static OrderResponse.Create from(Order order, List<OrderItem> orderItems) {
             List<OrderItemResponse.Create> orderItemResponses = orderItems.stream()
                     .map(OrderItemResponse.Create::from).toList();
-            return new OrderResponse.Create(order.getId(), order.getEmail(), order.getAddress(), order.getZipCode(), orderItemResponses, order.getStatus(), order.getDeliveryDate());
+            return new OrderResponse.Create(order.getId(), order.getEmail(), order.getAddress(),
+                    order.getZipCode(), orderItemResponses, order.getTotalPrice(), order.getStatus(), order.getDeliveryDate());
         }
     }
 }

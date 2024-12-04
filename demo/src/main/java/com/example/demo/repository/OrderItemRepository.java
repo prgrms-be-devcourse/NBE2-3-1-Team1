@@ -11,7 +11,7 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 
     List<OrderItem> findAllByOrderIsNull();
 
-    List<OrderItem> findByOrder(Order order);
+    List<OrderItem> findAllByOrder(Order order);
 
     OrderItem findByItemAndOrderIsNull(Item item);
 
