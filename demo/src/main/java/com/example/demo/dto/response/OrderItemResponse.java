@@ -18,11 +18,12 @@ public record OrderItemResponse() {
 
     public record Read(
             Long itemId,
+            String itemName,
             int quantity,
             int price
     ) {
         public static OrderItemResponse.Read from(OrderItem orderItem) {
-            return new OrderItemResponse.Read(orderItem.getItem().getId(), orderItem.getQuantity(), orderItem.getItem().getPrice() * orderItem.getQuantity());
+            return new OrderItemResponse.Read(orderItem.getItem().getId(), orderItem.getItem().getName(), orderItem.getQuantity(), orderItem.getItem().getPrice() * orderItem.getQuantity());
         }
     }
 

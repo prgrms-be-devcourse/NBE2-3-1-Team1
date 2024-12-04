@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <script nonce="c88139d21a644224a8394ed517f"
+            src="//local.adguard.org?ts=1733276264980&amp;type=content-script&amp;dmn=file.notion.so&amp;url=https%3A%2F%2Ffile.notion.so%2Ff%2Ff%2F89fde35f-d786-48b7-a620-56fc17eb00d5%2F34eaa351-f45e-4061-9ead-ca55eae4c622%2Fsample.html%3Ftable%3Dblock%26id%3De5c4e1e1-9dbf-45bc-9a4d-a2d6d81526ec%26spaceId%3D89fde35f-d786-48b7-a620-56fc17eb00d5%26expirationTimestamp%3D1733443200000%26signature%3DPLFODdLtbinPdUztaicK2PpjZnmLv-HjcYQBKDnuIx0%26download%3Dtrue%26downloadName%3Dsample.html&amp;app=zen.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0&amp;stealth=1&amp;st-push"
+            type="text/javascript"></script>
+    <script nonce="c88139d21a644224a8394ed517f"
+            src="//local.adguard.org?ts=1733276264980&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"
+            type="text/javascript"></script>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" rel="stylesheet">
+    <style>
+        body {
+            background: #ddd;
+        }
+
+        .card {
+            margin: auto;
+            max-width: 950px;
+            width: 90%;
+            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 1rem;
+            border: transparent
+        }
+
+        .summary {
+            background-color: #ddd;
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            padding: 4vh;
+            color: rgb(65, 65, 65)
+        }
+
+        @media (max-width: 767px) {
+            .summary {
+                border-top-right-radius: unset;
+                border-bottom-left-radius: 1rem
+            }
+        }
+
+        .row {
+            margin: 0
+        }
+
+        .title b {
+            font-size: 1.5rem
+        }
+
+        .col-2,
+        .col {
+            padding: 0 1vh
+        }
+
+        img {
+            width: 3.5rem
+        }
+
+        hr {
+            margin-top: 1.25rem
+        }
+
+        .products {
+            width: 100%;
+        }
+
+        .products .price, .products .action {
+            line-height: 38px;
+        }
+
+        .products .action {
+            line-height: 38px;
+        }
+
+    </style>
+    <title>Hello, world!</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="container-fluid">
+<div class="row justify-content-center m-4">
+    <h1 class="text-center">Grids & Circle</h1>
+</div>
+<div class="card">
+    <div class="row">
+        <div class="col-md-8 mt-4 d-flex flex-column align-items-start p-3 pt-0">
+            <h5 class="flex-grow-0"><b>상품 목록</b></h5>
+            <ul class="list-group products">
+
+            </ul>
+        </div>
+        <div class="col-md-4 summary p-4">
+
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const summaryContainer = document.querySelector(".col-md-4.summary");
+        const apiUrl = "/api/order-items";
+        const orderSubmitUrl = "/api/orders";
+
+        const fetchOrderSummary = async () => {
+            try {
+                const response = await axios.get(apiUrl);
+                const data = response.data;
+                renderOrderSummary(data);
+            } catch (error) {
+                console.error("주문 요약 불러오기 실패:", error);
+            }
+        };
+
+        const renderOrderSummary = (data) => {
+            const summaryContent = renderSummaryHeader();
+            const orderItemsHtml = renderOrderItems(data.orderItems);
+            const orderMemberHtml = renderOrderForm();
+            const totalPriceHtml = renderTotalPrice(data.totalPrice);
+
+            summaryContainer.innerHTML = summaryContent + orderItemsHtml + orderMemberHtml + totalPriceHtml;
+
+            const submitButton = summaryContainer.querySelector(".add-order");
+            submitButton.addEventListener("click", handleOrderSubmit);
+        };
+
+        const renderSummaryHeader = () => `
+        <div>
+          <h5 class="m-0 p-0"><b>Summary</b></h5>
+        </div>
+        <hr>
+    `;
+
+        const renderOrderItems = (orderItems) =>
+            orderItems
+                .map(
+                    item => `
+                  <div class="row">
+                    <h6 class="p-0">${item.itemName} <span class="badge bg-dark">${item.quantity} 개</span></h6>
+                  </div>
+                `
+                )
+                .join("");
+
+        const renderOrderForm = () => `
+        <form>
+            <div class="mb-3">
+                <label class="form-label" for="email">이메일</label>
+                <input class="form-control mb-1" id="email" type="email">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="address">주소</label>
+                <input class="form-control mb-1" id="address" type="text">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="postcode">우편번호</label>
+                <input class="form-control" id="postcode" type="text">
+            </div>
+            <div>당일 오후 2시 이후의 주문은 다음날 배송을 시작합니다.</div>
+        </form>
+    `;
+
+        const renderTotalPrice = (totalPrice) => `
+        <div class="row pt-2 pb-2 border-top">
+            <h5 class="col">총금액</h5>
+            <h5 class="col text-end">${totalPrice}원</h5>
+        </div>
+        <button class="btn btn-dark col-12 add-order">결제하기</button>
+    `;
+
+
+        const handleOrderSubmit = async (event) => {
+            event.preventDefault();
+
+            const email = document.querySelector("#email").value;
+            const address = document.querySelector("#address").value;
+            const zipCode = document.querySelector("#postcode").value;
+
+            if (!email || !address || !zipCode) {
+                alert("모든 필드를 입력해주세요.");
+                return;
+            }
+
+            try {
+                const payload = { email, address, zipCode };
+                const response = await axios.post(orderSubmitUrl, payload);
+                alert("주문이 성공적으로 등록되었습니다!");
+                console.log("응답 데이터:", response.data);
+                window.location.reload();
+            } catch (error) {
+                console.error("주문 등록 실패:", error);
+                alert("주문 등록에 실패했습니다. 다시 시도해주세요.");
+            }
+        };
+        fetchOrderSummary();
+
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+        const productsList = document.querySelector(".products");
+        const apiUrl = "/api/items";
+
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(apiUrl);
+                const data = response.data;
+                console.log(data);
+                renderProductList(data);
+            } catch (error) {
+                console.error("상품 목록 불러오기 실패:", error);
+            }
+        };
+
+        const renderProductList = (data) => {
+            productsList.innerHTML = "";
+
+            data.forEach((item, index) => {
+                const productItem = document.createElement("li");
+                productItem.className = index === 0
+                    ? "list-group-item d-flex mt-3"
+                    : "list-group-item d-flex mt-2";
+
+                productItem.innerHTML = `
+                                            <div class="col-2">
+                                                <img class="img-fluid" src="https://i.imgur.com/HKOFQYa.jpeg" alt="${item.name}">
+                                            </div>
+                                            <div class="col">
+                                                <div class="row text-muted">${item.categoryName}</div>
+                                                <div class="row">${item.name}</div>
+                                            </div>
+                                            <div class="col text-center price">${item.price}원</div>
+                                            <div class="col text-end action">
+                                                <a class="btn btn-small btn-outline-dark" data-id="${item.itemId}">추가</a>
+                                            </div>
+                                        `;
+                productsList.appendChild(productItem);
+            });
+
+            addClickEventsToButtons();
+        };
+
+        const addClickEventsToButtons = () => {
+            const buttons = document.querySelectorAll(".action .btn");
+            buttons.forEach(button => {
+                button.addEventListener("click", (event) => {
+                    const itemId = event.target.getAttribute("data-id");
+                    addProductToCart(itemId);
+                });
+            });
+        };
+
+        const addProductToCart = async (itemId) => {
+            try {
+                const response = await axios.post("/api/order-items", { itemId });
+                console.log("장바구니 추가 결과:", response.data);
+                window.location.reload();
+            } catch (error) {
+                console.error("장바구니 추가 실패:", error);
+                alert("장바구니 추가 중 문제가 발생했습니다.");
+            }
+        };
+
+        fetchProducts();
+    })
+
+</script>
+</body>
+</html>
