@@ -107,6 +107,7 @@
             try {
                 const response = await axios.get(apiUrl);
                 const data = response.data;
+
                 renderOrderSummary(data);
             } catch (error) {
                 console.error("주문 요약 불러오기 실패:", error);
@@ -168,6 +169,10 @@
         </div>
         <button class="btn btn-dark col-12 add-order">결제하기</button>
     `;
+        const validateEmail = (email) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        };
 
 
         const handleOrderSubmit = async (event) => {
@@ -178,19 +183,30 @@
             const zipCode = document.querySelector("#postcode").value;
 
             if (!email || !address || !zipCode) {
-                alert("모든 필드를 입력해주세요.");
+                alert("모든 항목을 입력해주세요.");
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                alert("올바른 이메일 주소를 입력해주세요.");
                 return;
             }
 
             try {
-                const payload = { email, address, zipCode };
+                const payload = {email, address, zipCode};
                 const response = await axios.post(orderSubmitUrl, payload);
-                alert("주문이 성공적으로 등록되었습니다!");
+                const now = new Date();
+                const currentHour = now.getHours();
+                const deliveryMessage =
+                    currentHour < 14 ? "당일 오후 2시 이후에 발송됩니다." : "다음날 오후 2시 이후에 발송됩니다.";
+
+                alert("주문이 성공적으로 등록되었습니다!\n" + deliveryMessage);
+
                 console.log("응답 데이터:", response.data);
                 window.location.reload();
             } catch (error) {
                 console.error("주문 등록 실패:", error);
-                alert("주문 등록에 실패했습니다. 다시 시도해주세요.");
+                alert("장바구니가 존재하지 않습니다.");
             }
         };
         fetchOrderSummary();
@@ -251,7 +267,7 @@
 
         const addProductToCart = async (itemId) => {
             try {
-                const response = await axios.post("/api/order-items", { itemId });
+                const response = await axios.post("/api/order-items", {itemId});
                 console.log("장바구니 추가 결과:", response.data);
                 window.location.reload();
             } catch (error) {
