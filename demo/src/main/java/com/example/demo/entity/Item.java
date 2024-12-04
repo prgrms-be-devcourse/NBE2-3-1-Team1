@@ -28,7 +28,9 @@ public class Item{
     @JoinColumn(name = "category_id")
     private Category category;
 
-    /* 재고 관련 */
+    @Column
+    private String imageUrl = "https://i.imgur.com/HKOFQYa.jpeg";
+
     private int stockQuantity;
 
     public void addStcok(int quantity) {
