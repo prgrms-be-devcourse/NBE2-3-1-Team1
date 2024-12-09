@@ -38,6 +38,9 @@ public class OrderItem {
     }
 
     public static OrderItem toOrderItem(Item item) {
+        if (item.getStockQuantity() < 1) {
+            throw new IllegalStateException("상품" + item.getName() + "재고 부족");
+        }
         return OrderItem.builder()
                 .item(item)
                 .quantity(1)
@@ -49,10 +52,16 @@ public class OrderItem {
     }
 
     public void addQuantity(int quantity) {
+        if (item.getStockQuantity() <= quantity) {
+            throw new IllegalStateException("상품" + item.getName() + "재고 부족");
+        }
         this.quantity += quantity;
     }
 
     public void addQuantity() {
+        if (item.getStockQuantity() <= quantity) {
+            throw new IllegalStateException("상품 " + item.getName() + "의 재고가 부족합니다.");
+        }
         this.quantity++;
     }
 
