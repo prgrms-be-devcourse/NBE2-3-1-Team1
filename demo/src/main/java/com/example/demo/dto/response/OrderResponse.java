@@ -26,4 +26,6 @@ public record OrderResponse() {
                     order.getZipCode(), orderItemResponses, order.getTotalPrice(), order.getStatus(), order.getDeliveryDate());
         }
     }
+
+
 }

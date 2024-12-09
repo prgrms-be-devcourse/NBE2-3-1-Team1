@@ -55,6 +55,14 @@ public class OrderService {
         return orderRepository.findByDeliveryDateAndEmail(deliveryDate, email);
     }
 
-
+    @Transactional
+    public List<Order> getOrderByEmail(String email) {
+        List<Order> orderByEmail = orderRepository.findByEmail(email);
+        System.out.println(orderByEmail);
+        if (orderByEmail.isEmpty()) {
+            throw new IllegalStateException();
+        }
+        return orderByEmail;
+    }
 }
 
