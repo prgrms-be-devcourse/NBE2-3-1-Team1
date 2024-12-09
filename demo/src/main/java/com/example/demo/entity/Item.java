@@ -39,7 +39,7 @@ public class Item{
 
     public void removeStock(int quantity) {
         this.stockQuantity = this.stockQuantity - quantity;
-        if (this.stockQuantity < 0) {
+        if (this.stockQuantity < 1) {
             throw new IllegalStateException("재고 부족");
         }
 
@@ -61,6 +61,7 @@ public class Item{
                 .stockQuantity(dto.stockQuantity())
                 .build();
     }
+
     public void updateItem(String name, int price, Category category, int stockQuantity) {
         this.name = name;
         this.price = price;
