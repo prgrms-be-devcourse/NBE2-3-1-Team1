@@ -43,6 +43,12 @@ public class OrderItemService {
 
         for (OrderItem orderItem : orderItemsByOrderIsNull) {
             Long key = orderItem.getItem().getId();
+            Item item = orderItem.getItem();
+            if (item.getStockQuantity() < orderItem.getQuantity()) {
+                throw new IllegalStateException("상품" + item.getName() + "재고가 부족합니다");
+            }
+            item.removeStock(orderItem.getQuantity());
+
             if (mergedOrderItems.containsKey(key)) {
                 mergedOrderItems.get(key).addQuantity(orderItem.getQuantity());
             } else {
