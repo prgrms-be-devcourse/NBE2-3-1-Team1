@@ -52,14 +52,17 @@ public class OrderItem {
     }
 
     public void addQuantity(int quantity) {
-        if (item.getStockQuantity() <= quantity) {
+        /* 현재 수량과 추가 수량 재고 비교해야함.*/
+        int totalQuantity = this.quantity + quantity;
+        if (item.getStockQuantity() < totalQuantity) {
             throw new IllegalStateException("상품" + item.getName() + "재고 부족");
         }
         this.quantity += quantity;
     }
 
     public void addQuantity() {
-        if (item.getStockQuantity() <= quantity) {
+        /* 현재 수량에 재고를 1더한값으로 비교해야함.*/
+        if (item.getStockQuantity() < quantity+1) {
             throw new IllegalStateException("상품 " + item.getName() + "의 재고가 부족합니다.");
         }
         this.quantity++;
